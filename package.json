@@ -1,0 +1,25 @@
+{
+  "name": "query-it",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.mjs",
+  "scripts": {
+    "prepare": "prettier --write src && tsup"
+  },
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "tsup": "^7.2.0"
+  },
+  "dependencies": {
+    "@types/node-fetch": "^2.6.4",
+    "node-fetch": "^2.6.12"
+  }
+}
