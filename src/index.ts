@@ -20,7 +20,12 @@ export class Client {
             body: JSON.stringify({ query, variables }),
         });
         const data = await resp.json();
-        if (data.errors) throw new Error(`Status: ${resp.status}, ${JSON.stringify(data.errors)}`);
+        if (data.errors)
+            throw new Error(
+                `Failed to query.\nQuery: '${query}'\nVariables: ${JSON.stringify(variables)}\nStatus: ${
+                    resp.status
+                }\n${JSON.stringify(data.errors)}`,
+            );
         return data;
     }
 
@@ -45,6 +50,25 @@ export class Client {
     }
 
     /**
+     * Fetches an user by their id.
+     * @param id The id of the user.
+     * @param getFields Function to select which fields you will need.
+     * @returns The requested data.
+     */
+    async userById<T extends (ctx: UserContext) => FieldArray>(
+        id: number,
+        getFields: T,
+    ): Promise<TransformFields<ReturnType<T>>> {
+        const fields = getFields(userContext);
+
+        const query = await this.doQuery(`query Query($id: Int!) { user(id: $id) { ${fields.join(" ")} } }`, {
+            id: id,
+        });
+
+        return query.data.user;
+    }
+
+    /**
      * Fetches a repl by its id.
      * @param replId The id of the repl.
      * @param getFields Function to select which fields you will need.
@@ -57,11 +81,31 @@ export class Client {
         const fields = getFields(replContext);
 
         const query = await this.doQuery(
-            `query Query($replId: String!) { repl(id: $replId) { ${fields.join(" ")} } }`,
+            `query Query($replId: String!) { repl(id: $replId) { ... on Repl { ${fields.join(" ")} } } }`,
             { replId: replId },
         );
 
-        return query.data.userByUsername;
+        return query.data.repl;
+    }
+
+    /**
+     * Fetches a repl by its url.
+     * @param replUrl The url of the repl.
+     * @param getFields Function to select which fields you will need.
+     * @returns The requested data.
+     */
+    async replByURL<T extends (ctx: ReplContext) => FieldArray>(
+        replUrl: string,
+        getFields: T,
+    ): Promise<TransformFields<ReturnType<T>>> {
+        const fields = getFields(replContext);
+
+        const query = await this.doQuery(
+            `query Query($replUrl: String!) { repl(url: $replUrl) { ... on Repl { ${fields.join(" ")} } } }`,
+            { replUrl: replUrl },
+        );
+
+        return query.data.repl;
     }
 
     /**

@@ -18,12 +18,26 @@ declare class Client {
      */
     userByUsername<T extends (ctx: UserContext) => FieldArray>(username: string, getFields: T): Promise<TransformFields<ReturnType<T>>>;
     /**
+     * Fetches an user by their id.
+     * @param id The id of the user.
+     * @param getFields Function to select which fields you will need.
+     * @returns The requested data.
+     */
+    userById<T extends (ctx: UserContext) => FieldArray>(id: number, getFields: T): Promise<TransformFields<ReturnType<T>>>;
+    /**
      * Fetches a repl by its id.
      * @param replId The id of the repl.
      * @param getFields Function to select which fields you will need.
      * @returns The requested data.
      */
     replById<T extends (ctx: ReplContext) => FieldArray>(replId: string, getFields: T): Promise<TransformFields<ReturnType<T>>>;
+    /**
+     * Fetches a repl by its url.
+     * @param replUrl The url of the repl.
+     * @param getFields Function to select which fields you will need.
+     * @returns The requested data.
+     */
+    replByURL<T extends (ctx: ReplContext) => FieldArray>(replUrl: string, getFields: T): Promise<TransformFields<ReturnType<T>>>;
     /**
      * Fetches the currently logged in user. (only if sid was passed in)
      * @param getFields Function to select which fields you will need.
