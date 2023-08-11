@@ -7,7 +7,7 @@ A basic wrapper for replit's graphql that lets you choose what data you will nee
 # Example
 #### Get some info about a replit user
 ```ts
-import * as query from "../src";
+import * as query from "query-it";
 
 const client = new query.Client();
 const USERNAME = "JustCoding123";
