@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.mjs",
   "scripts": {
-    "prepare": "prettier --write src && tsup"
+    "cleanup": "prettier --write src && tsup"
   },
   "exports": {
     "import": "./dist/index.mjs",
