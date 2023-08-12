@@ -2,7 +2,7 @@
 A basic wrapper for replit's graphql that lets you choose what data you will need.
 
 # Installation
-`npm i https://github.com/neverUsedGithub/graphql-it`
+`npm i graphql-it`
 
 # Examples
 #### Get some info about a replit user
