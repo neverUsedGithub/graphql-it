@@ -14,7 +14,7 @@
   },
   "files": [ "dist/**/*" ],
   "keywords": [],
-  "author": "",
+  "author": "justcoding123",
   "license": "ISC",
   "devDependencies": {
     "ts-node": "^10.9.1",
