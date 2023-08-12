@@ -4,7 +4,7 @@ A basic wrapper for replit's graphql that lets you choose what data you will nee
 # Installation
 `npm i https://github.com/neverUsedGithub/query-it`
 
-# Example
+# Examples
 #### Get some info about a replit user
 ```ts
 import * as query from "query-it";

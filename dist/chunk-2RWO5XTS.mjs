@@ -1,1 +1,0 @@
-import{a as o}from"./chunk-T26L3XB2.mjs";import{a as r}from"./chunk-L2QST3WI.mjs";import{a as e,b as t}from"./chunk-YNSIXYNX.mjs";var i=t(e({},r),{teams:n=>`teams { ${n(o).join(" ")} }`});export{i as a};

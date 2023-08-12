@@ -10,6 +10,8 @@ const user = client.userByUsername(USERNAME, (user) => [
     user.userSubscriptionType,
     user.followerCount,
     user.id,
+    user.pinnedRepls((repl) => [repl.title]),
+    user.posts((post) => [post.replComment((comment) => [comment.body()]), post.repl((repl) => [repl.title])]),
 ]);
 
 user.then((user) => {
@@ -18,6 +20,11 @@ user.then((user) => {
     console.log(`URL: https://replit.com${user.url}`);
     console.log(`Profile Picture: ${user.image}`);
     console.log(`Find them at: ${user.url}`);
+    console.log(`Pinned repls: ${user.pinnedRepls.map((r) => r.title).join(", ")}`);
+    console.log(`Some of @${user.username}'s recent posts:`);
+    for (const post of user.posts.items) {
+        console.log(` - ${post.repl.title}`);
+    }
 
     console.log("--- fetching by id ---");
 

@@ -3,5 +3,8 @@
         "strict": true,
         "target": "ES6",
         "moduleResolution": "NodeNext"
-    }
+    },
+    "exclude": [
+        "dist"
+    ]
 }

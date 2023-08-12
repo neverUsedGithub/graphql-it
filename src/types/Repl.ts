@@ -48,5 +48,5 @@ export const replContext: Record<keyof ReplContext, any> = {
     publishedAs: "publishedAs",
     lang: <T extends (ctx: LanguageContext) => FieldArray>(getFields: T) =>
         `lang { ${getFields(languageContext).join(" ")} }`,
-    tags: <T extends (ctx: TagContext) => FieldArray>(getFields: T) => ` tags { ${getFields(tagContext).join(" ")} }`,
+    tags: <T extends (ctx: TagContext) => FieldArray>(getFields: T) => `tags { ${getFields(tagContext).join(" ")} }`,
 };

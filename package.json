@@ -4,13 +4,15 @@
   "description": "",
   "main": "dist/index.mjs",
   "scripts": {
-    "cleanup": "prettier --write src && prettier --write examples && tsup"
+    "cleanup": "prettier --write src && prettier --write examples",
+    "build": "tsup"
   },
   "exports": {
     "import": "./dist/index.mjs",
     "require": "./dist/index.js",
     "types": "./dist/index.d.ts"
   },
+  "files": [ "dist/**/*" ],
   "keywords": [],
   "author": "",
   "license": "ISC",
