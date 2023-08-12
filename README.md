@@ -1,13 +1,13 @@
-# query-it
+# graphql-it
 A basic wrapper for replit's graphql that lets you choose what data you will need.
 
 # Installation
-`npm i https://github.com/neverUsedGithub/query-it`
+`npm i https://github.com/neverUsedGithub/graphql-it`
 
 # Examples
 #### Get some info about a replit user
 ```ts
-import * as query from "query-it";
+import * as query from "graphql-it";
 
 const client = new query.Client();
 const USERNAME = "JustCoding123";
@@ -31,11 +31,11 @@ user.then((user) => {
 ```
 #### Get info about a repl by its id or url
 ```ts
-import * as query from "query-it";
+import * as query from "graphql-it";
 
 const client = new query.Client();
 
-// OR client.replByURL("/@JustCoding123/query-it", ...);
+// OR client.replByURL("/@JustCoding123/graphql-it", ...);
 const repl = client.replById("942579c7-fafd-406f-be58-98e4458cc8ed", (repl) => [
     repl.title,
     repl.tags(tag => [ tag.id ]),
