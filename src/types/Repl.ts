@@ -1,4 +1,5 @@
 import { Field, FieldArray, TransformFields } from "../field";
+import { CommentContext, commentContext } from "./Comment";
 import { LanguageContext, languageContext } from "./Language";
 import { TagContext, tagContext } from "./Tag";
 
@@ -24,6 +25,16 @@ export interface ReplContext {
     publishedAs: Field<"publishedAs", string | null>;
     lang<T extends (ctx: LanguageContext) => FieldArray>(getFields: T): Field<"lang", TransformFields<ReturnType<T>>>;
     tags<T extends (ctx: TagContext) => FieldArray>(getFields: T): Field<"tags", TransformFields<ReturnType<T>>[]>;
+    comments<T extends (ctx: CommentContext) => FieldArray>(
+        getFields: T,
+        options?: { count?: number; after?: string },
+    ): Field<
+        "comments",
+        {
+            items: TransformFields<ReturnType<T>>[];
+            pageInfo: { nextCursor: string; hasNextPage: boolean };
+        }
+    >;
 }
 
 export const replContext: Record<keyof ReplContext, any> = {
@@ -49,4 +60,8 @@ export const replContext: Record<keyof ReplContext, any> = {
     lang: <T extends (ctx: LanguageContext) => FieldArray>(getFields: T) =>
         `lang { ${getFields(languageContext).join(" ")} }`,
     tags: <T extends (ctx: TagContext) => FieldArray>(getFields: T) => `tags { ${getFields(tagContext).join(" ")} }`,
+    comments: (getFields: (ctx: CommentContext) => FieldArray, options?: { after?: string; count?: number }) =>
+        `comments(count: ${options?.count ?? 10}, after: ${JSON.stringify(
+            options?.after ?? null,
+        )}) { items { ${getFields(commentContext).join(" ")} } pageInfo { nextCursor hasNextPage } }`,
 };

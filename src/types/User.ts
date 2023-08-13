@@ -27,27 +27,21 @@ export interface UserContext {
         options?: { after?: string; count?: number; order?: "old" | "new" },
     ): Field<
         "posts",
-        Resolve<
-            { items: TransformFields<ReturnType<T>>[] } & { pageInfo: { nextCursor: string; hasNextPage: boolean } }
-        >
+        Resolve<{ items: TransformFields<ReturnType<T>>[]; pageInfo: { nextCursor: string; hasNextPage: boolean } }>
     >;
     followers<T extends (ctx: UserContext) => FieldArray>(
         getFields: T,
         options?: { after?: string; count?: number },
     ): Field<
         "followers",
-        Resolve<
-            { items: TransformFields<ReturnType<T>>[] } & { pageInfo: { nextCursor: string; hasNextPage: boolean } }
-        >
+        Resolve<{ items: TransformFields<ReturnType<T>>[]; pageInfo: { nextCursor: string; hasNextPage: boolean } }>
     >;
     publicRepls<T extends (ctx: ReplContext) => FieldArray>(
         getFields: T,
         options?: { after?: string; count?: number },
     ): Field<
         "publicRepls",
-        Resolve<
-            { items: TransformFields<ReturnType<T>>[] } & { pageInfo: { nextCursor: string; hasNextPage: boolean } }
-        >
+        Resolve<{ items: TransformFields<ReturnType<T>>[]; pageInfo: { nextCursor: string; hasNextPage: boolean } }>
     >;
 }
 

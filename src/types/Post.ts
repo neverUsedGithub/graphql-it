@@ -15,7 +15,7 @@ export interface PostContext {
     // New posts
     replComment<T extends (ctx: CommentContext) => FieldArray>(
         getFields: T,
-    ): Field<"replComment", TransformFields<ReturnType<T>>>;
+    ): Field<"replComment", TransformFields<ReturnType<T>> | null>;
     repl<T extends (ctx: ReplContext) => FieldArray>(getFields: T): Field<"repl", TransformFields<ReturnType<T>>>;
     user<T extends (ctx: UserContext) => FieldArray>(getFields: T): Field<"user", TransformFields<ReturnType<T>>>;
     recentReplComments<T extends (ctx: CommentContext) => FieldArray>(

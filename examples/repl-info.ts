@@ -1,12 +1,18 @@
 import * as query from "../src";
 
 const client = new query.Client();
-const repl = client.replById("942579c7-fafd-406f-be58-98e4458cc8ed", (repl) => [
+const repl = client.replByURL("https://replit.com/@JustCoding123/Follower-Tree", (repl) => [
     repl.title,
     repl.tags((tag) => [tag.id]),
     repl.lang((lang) => [lang.displayName]),
     repl.iconUrl,
     repl.url,
+    repl.id,
+    repl.comments((comment) => [
+        comment.body(),
+        comment.user((user) => [user.username]),
+        comment.replies((comment) => [comment.id]),
+    ]),
 ]);
 
 repl.then((repl) => {
@@ -15,8 +21,13 @@ repl.then((repl) => {
     console.log(`Language: ${repl.lang.displayName}`);
     console.log(`Icon: ${repl.iconUrl}`);
 
-    console.log("--- fetching by url ---");
-    const repl2 = client.replByURL(repl.url, (repl) => [repl.likeCount]);
+    console.log(`Some of the repl's comments:`);
+    for (const comment of repl.comments.items) {
+        console.log(` - @${comment.user.username}: ${comment.body} (${comment.replies.length} replies)`);
+    }
+
+    console.log("--- fetching by id ---");
+    const repl2 = client.replById(repl.id, (repl) => [repl.likeCount]);
 
     repl2.then((repl2) => {
         console.log(`Likes: ${repl2.likeCount}`);
