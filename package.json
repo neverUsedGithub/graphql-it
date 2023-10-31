@@ -1,27 +1,29 @@
 {
-  "name": "graphql-it",
-  "version": "1.0.2",
-  "description": "",
-  "main": "dist/index.mjs",
-  "scripts": {
-    "cleanup": "prettier --write src && prettier --write examples",
-    "build": "tsup"
-  },
-  "exports": {
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js",
-    "types": "./dist/index.d.ts"
-  },
-  "files": [ "dist/**/*" ],
-  "keywords": [],
-  "author": "justcoding123",
-  "license": "ISC",
-  "devDependencies": {
-    "ts-node": "^10.9.1",
-    "tsup": "^7.2.0"
-  },
-  "dependencies": {
-    "@types/node-fetch": "^2.6.4",
-    "node-fetch": "^2.6.12"
-  }
+    "name": "graphql-it",
+    "version": "1.0.3",
+    "description": "",
+    "main": "dist/index.mjs",
+    "scripts": {
+        "cleanup": "prettier --write src examples tsup.config.js package.json",
+        "build": "tsup"
+    },
+    "exports": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "keywords": [],
+    "author": "justcoding123",
+    "license": "ISC",
+    "devDependencies": {
+        "ts-node": "^10.9.1",
+        "tsup": "^7.2.0"
+    },
+    "dependencies": {
+        "@types/node-fetch": "^2.6.4",
+        "node-fetch": "^2.6.12"
+    }
 }

@@ -2,7 +2,8 @@
     "compilerOptions": {
         "strict": true,
         "target": "ES6",
-        "moduleResolution": "NodeNext"
+        "moduleResolution": "NodeNext",
+        "module": "NodeNext"
     },
     "exclude": [
         "dist"
